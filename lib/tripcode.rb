@@ -1,5 +1,3 @@
-require 'iconv'
-
 # Implements operations concerning tripcodes
 module Tripcode
   FORBIDDEN_IN_SALT     = ':;<=>?@[\]^_`'
@@ -7,7 +5,7 @@ module Tripcode
   
   # Generates the tripcode for a certain password based on the recipe described on Wikipedia:
   #
-  #   1. Convert the input to Shift JIS.
+  #   1. Convert the input to Shift JIS. (Ignored by this implementation)
   #   2. Generate the salt as follows:
   #     - Take the second and third characters of the string obtained by appending H. to the end of the input.
   #     - Replace any characters not between . and z with .
@@ -15,7 +13,6 @@ module Tripcode
   #   3. Call the crypt() function with the input and salt.
   #   4. Return the last 10 characters. (compressional data harvest)
   def self.hash(password)
-    password = Iconv.iconv('SHIFT-JIS//IGNORE', 'UTF-8', password)[0]
     salt = (password + 'H.')[1..2]
     salt.gsub!(/[^a-zA-Z0-9\.]/, '.')
     salt.tr!(FORBIDDEN_IN_SALT, FORBIDDEN_ALTERNATIVE)

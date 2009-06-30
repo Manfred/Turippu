@@ -13,7 +13,7 @@ describe "Tripcode" do
     Dir[File.expand_path('../compatibility/*.txt', __FILE__)].each do |filename|
       File.open(filename) do |file|
         file.each_line do |line|
-          password, expected = line.strip.split('=').map { |w| w.strip }
+          password, expected = line.strip.split(/\s=\s/).map { |w| w.strip }
           examples += 1
           unless Tripcode.hash(password) == expected
             failures += 1
