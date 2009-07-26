@@ -16,3 +16,18 @@ namespace :docs do
     rdoc.options << "--all" << "--charset" << "utf-8"
   end
 end
+
+begin
+  require 'jeweler'
+  Jeweler::Tasks.new do |s|
+    s.name = "Turippu"
+    s.description = "A trip-code library for Ruby."
+    s.summary = "A library to generate trip-codes for a password as a way to do weak authentication."
+    s.email = "manfred@fngtps.com"
+    s.homepage = "http://manfred.github.com"
+    
+    s.authors = ["Manfred Stienstra"]
+    s.files = %w(lib/tripcode.rb README)
+  end
+rescue LoadError
+end
