@@ -2,5 +2,7 @@
 |
 | A trip-code library for Ruby
 |
+| > Tripcode.hash('password')
+|
 | Music suggestion: The Electric Flag – A Long Time Comin'
 `-===
